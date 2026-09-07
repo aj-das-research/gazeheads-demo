@@ -23,6 +23,30 @@ const MAX_NEW_TOKENS = 64;
 const asset = (p) => new URL(p, import.meta.url).href;
 const $ = (id) => document.getElementById(id);
 
+// float32 -> IEEE 754 half, as the uint16 bit patterns ONNX Runtime expects.
+// Round-to-nearest-even; the steering values (0, 1, +/-delta <= 16) are all
+// exactly representable, so precision is not a concern here.
+const _f32 = new Float32Array(1), _u32 = new Uint32Array(_f32.buffer);
+function f16bits(v) {
+  _f32[0] = v;
+  const x = _u32[0], sign = (x >>> 16) & 0x8000;
+  let exp = (x >>> 23) & 0xff, mant = x & 0x7fffff;
+  if (exp === 0xff) return sign | 0x7c00 | (mant ? 0x200 : 0);   // inf / nan
+  exp = exp - 127 + 15;
+  if (exp >= 0x1f) return sign | 0x7c00;                           // overflow
+  if (exp <= 0) {                                                  // subnormal / zero
+    if (exp < -10) return sign;
+    mant = (mant | 0x800000) >>> (1 - exp);
+    return sign | ((mant + 0x1000) >>> 13);
+  }
+  return sign | (exp << 10) | ((mant + 0x1000) >>> 13);
+}
+function toF16(arr) {
+  const out = new Uint16Array(arr.length);
+  for (let i = 0; i < arr.length; i++) out[i] = f16bits(arr[i]);
+  return out;
+}
+
 // ---------------------------------------------------------------- steering --
 // Owns the two steering tensors and the decoder-session patch that feeds them.
 class Steering {
@@ -47,7 +71,10 @@ class Steering {
   // is decode-only: the prefill (q_len > 1) builds the KV cache unmodified.
   attach(session) {
     const names = [...session.inputNames];
-    const hidden = ['gaze_head_mask', 'gaze_sign'].filter((n) => !names.includes(n));
+    // Hide the two steering inputs from the list transformers.js validates feeds
+    // against, then add them ourselves in run(); otherwise it throws
+    // "Missing the following inputs" before run() is ever reached.
+    const hidden = ['gaze_head_mask', 'gaze_sign'].filter((n) => names.includes(n));
     Object.defineProperty(session, 'inputNames', {
       get: () => names.filter((n) => !hidden.includes(n)), configurable: true,
     });
@@ -64,8 +91,9 @@ class Steering {
         for (const p of self.boost) if (p < totalLen) sign[p] = +self.delta;
         for (const p of self.suppress) if (p < totalLen) sign[p] = -self.delta;
       }
-      feeds.gaze_head_mask = new Tensor('float16', mask, [N_LAYERS, N_HEADS]);
-      feeds.gaze_sign = new Tensor('float16', sign, [totalLen]);
+      // ORT float16 tensors carry IEEE half bit patterns in a Uint16Array.
+      feeds.gaze_head_mask = new Tensor('float16', toF16(mask), [N_LAYERS, N_HEADS]);
+      feeds.gaze_sign = new Tensor('float16', toF16(sign), [totalLen]);
       return run(feeds, ...rest);
     };
   }
