@@ -1,0 +1,202 @@
+[
+ {
+  "name": "xmlab547",
+  "modality": "CT",
+  "label": "xmlab547 \u00b7 CT \u00b7 Liver, Left Kidney, Stomach, Left Lung \u2026"
+ },
+ {
+  "name": "xmlab234",
+  "modality": "CT",
+  "label": "xmlab234 \u00b7 CT \u00b7 Liver, Liver (2), Liver (3), Liver (4) \u2026"
+ },
+ {
+  "name": "xmlab0",
+  "modality": "MRI",
+  "label": "xmlab0 \u00b7 MRI \u00b7 Liver, Left Kidney, Right Kidney, Spleen"
+ },
+ {
+  "name": "xmlab545",
+  "modality": "CT",
+  "label": "xmlab545 \u00b7 CT \u00b7 Liver, Left Kidney, Left Lung, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab550",
+  "modality": "CT",
+  "label": "xmlab550 \u00b7 CT \u00b7 Liver, Stomach, Left Lung, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab16",
+  "modality": "MRI",
+  "label": "xmlab16 \u00b7 MRI \u00b7 Liver, Left Kidney, Right Kidney, Spleen"
+ },
+ {
+  "name": "xmlab492",
+  "modality": "MRI",
+  "label": "xmlab492 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Edema (3), Brain Edema (4) \u2026"
+ },
+ {
+  "name": "xmlab505",
+  "modality": "MRI",
+  "label": "xmlab505 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Non-enhancing Tumor, Brain Non-enhancing Tumor (2) \u2026"
+ },
+ {
+  "name": "xmlab233",
+  "modality": "CT",
+  "label": "xmlab233 \u00b7 CT \u00b7 Liver, Liver (2), Liver (3), Liver (4) \u2026"
+ },
+ {
+  "name": "xmlab504",
+  "modality": "MRI",
+  "label": "xmlab504 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Non-enhancing Tumor, Brain Non-enhancing Tumor (2) \u2026"
+ },
+ {
+  "name": "xmlab123",
+  "modality": "X-Ray",
+  "label": "xmlab123 \u00b7 X-Ray \u00b7 Cardiomegaly, Pneumothorax"
+ },
+ {
+  "name": "xmlab536",
+  "modality": "CT",
+  "label": "xmlab536 \u00b7 CT \u00b7 Liver, Left Kidney, Right Kidney, Small Bowel \u2026"
+ },
+ {
+  "name": "xmlab503",
+  "modality": "MRI",
+  "label": "xmlab503 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Non-enhancing Tumor, Brain Non-enhancing Tumor (2) \u2026"
+ },
+ {
+  "name": "xmlab137",
+  "modality": "X-Ray",
+  "label": "xmlab137 \u00b7 X-Ray \u00b7 Atelectasis, Mass"
+ },
+ {
+  "name": "xmlab537",
+  "modality": "CT",
+  "label": "xmlab537 \u00b7 CT \u00b7 Liver, Left Kidney, Right Kidney, Small Bowel \u2026"
+ },
+ {
+  "name": "xmlab441",
+  "modality": "MRI",
+  "label": "xmlab441 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Edema (3), Brain Non-enhancing Tumor \u2026"
+ },
+ {
+  "name": "xmlab147",
+  "modality": "X-Ray",
+  "label": "xmlab147 \u00b7 X-Ray \u00b7 Atelectasis, Mass"
+ },
+ {
+  "name": "xmlab538",
+  "modality": "CT",
+  "label": "xmlab538 \u00b7 CT \u00b7 Liver, Left Kidney, Right Kidney, Small Bowel \u2026"
+ },
+ {
+  "name": "xmlab442",
+  "modality": "MRI",
+  "label": "xmlab442 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Edema (3), Brain Edema (4) \u2026"
+ },
+ {
+  "name": "xmlab155",
+  "modality": "X-Ray",
+  "label": "xmlab155 \u00b7 X-Ray \u00b7 Cardiomegaly, Infiltrate"
+ },
+ {
+  "name": "xmlab539",
+  "modality": "CT",
+  "label": "xmlab539 \u00b7 CT \u00b7 Liver, Left Kidney, Right Kidney, Small Bowel \u2026"
+ },
+ {
+  "name": "xmlab443",
+  "modality": "MRI",
+  "label": "xmlab443 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Non-enhancing Tumor, Brain Non-enhancing Tumor (2) \u2026"
+ },
+ {
+  "name": "xmlab156",
+  "modality": "X-Ray",
+  "label": "xmlab156 \u00b7 X-Ray \u00b7 Atelectasis, Effusion"
+ },
+ {
+  "name": "xmlab541",
+  "modality": "CT",
+  "label": "xmlab541 \u00b7 CT \u00b7 Liver, Left Kidney, Small Bowel, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab456",
+  "modality": "MRI",
+  "label": "xmlab456 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Edema (3), Brain Non-enhancing Tumor \u2026"
+ },
+ {
+  "name": "xmlab298",
+  "modality": "X-Ray",
+  "label": "xmlab298 \u00b7 X-Ray \u00b7 Nodule, Pneumothorax"
+ },
+ {
+  "name": "xmlab542",
+  "modality": "CT",
+  "label": "xmlab542 \u00b7 CT \u00b7 Liver, Left Kidney, Small Bowel, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab494",
+  "modality": "MRI",
+  "label": "xmlab494 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Edema (3), Brain Non-enhancing Tumor \u2026"
+ },
+ {
+  "name": "xmlab303",
+  "modality": "X-Ray",
+  "label": "xmlab303 \u00b7 X-Ray \u00b7 Effusion, Infiltrate"
+ },
+ {
+  "name": "xmlab544",
+  "modality": "CT",
+  "label": "xmlab544 \u00b7 CT \u00b7 Liver, Left Kidney, Left Lung, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab62",
+  "modality": "MRI",
+  "label": "xmlab62 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Non-enhancing Tumor, Brain Non-enhancing Tumor (2) \u2026"
+ },
+ {
+  "name": "xmlab309",
+  "modality": "X-Ray",
+  "label": "xmlab309 \u00b7 X-Ray \u00b7 Effusion, Infiltrate"
+ },
+ {
+  "name": "xmlab546",
+  "modality": "CT",
+  "label": "xmlab546 \u00b7 CT \u00b7 Liver, Left Kidney, Left Lung, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab2",
+  "modality": "MRI",
+  "label": "xmlab2 \u00b7 MRI \u00b7 Liver, Liver (2), Left Kidney, Right Kidney \u2026"
+ },
+ {
+  "name": "xmlab333",
+  "modality": "X-Ray",
+  "label": "xmlab333 \u00b7 X-Ray \u00b7 Effusion, Mass"
+ },
+ {
+  "name": "xmlab548",
+  "modality": "CT",
+  "label": "xmlab548 \u00b7 CT \u00b7 Liver, Stomach, Left Lung, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab463",
+  "modality": "MRI",
+  "label": "xmlab463 \u00b7 MRI \u00b7 Brain Edema, Brain Non-enhancing Tumor, Brain Enhancing Tumor, Brain Enhancing Tumor (2) \u2026"
+ },
+ {
+  "name": "xmlab334",
+  "modality": "X-Ray",
+  "label": "xmlab334 \u00b7 X-Ray \u00b7 Effusion, Pneumothorax"
+ },
+ {
+  "name": "xmlab549",
+  "modality": "CT",
+  "label": "xmlab549 \u00b7 CT \u00b7 Liver, Stomach, Left Lung, Right Lung \u2026"
+ },
+ {
+  "name": "xmlab491",
+  "modality": "MRI",
+  "label": "xmlab491 \u00b7 MRI \u00b7 Brain Edema, Brain Edema (2), Brain Edema (3), Brain Non-enhancing Tumor \u2026"
+ }
+]

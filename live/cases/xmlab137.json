@@ -1,0 +1,1 @@
+{"name": "xmlab137", "modality": "X-Ray", "width": 1024, "height": 1024, "resized": {"width": 1024, "height": 1024}, "grid_thw": [1, 32, 32], "embeds": {"file": "xmlab137.embeds.bin", "dtype": "float32", "dims": [1024, 2048]}, "regions": [{"label": "Atelectasis", "bbox": [575.0, 489.0, 855.0, 604.0]}, {"label": "Mass", "bbox": [309.0, 398.0, 405.0, 518.0]}]}

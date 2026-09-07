@@ -1,0 +1,1 @@
+{"name": "xmlab123", "modality": "X-Ray", "width": 1024, "height": 1024, "resized": {"width": 1024, "height": 1024}, "grid_thw": [1, 32, 32], "embeds": {"file": "xmlab123.embeds.bin", "dtype": "float32", "dims": [1024, 2048]}, "regions": [{"label": "Cardiomegaly", "bbox": [427.0, 464.0, 839.0, 808.0]}, {"label": "Pneumothorax", "bbox": [613.0, 110.0, 785.0, 213.0]}]}

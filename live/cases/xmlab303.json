@@ -1,0 +1,1 @@
+{"name": "xmlab303", "modality": "X-Ray", "width": 1024, "height": 1024, "resized": {"width": 1024, "height": 1024}, "grid_thw": [1, 32, 32], "embeds": {"file": "xmlab303.embeds.bin", "dtype": "float32", "dims": [1024, 2048]}, "regions": [{"label": "Effusion", "bbox": [718.0, 604.0, 837.0, 748.0]}, {"label": "Infiltrate", "bbox": [144.0, 722.0, 363.0, 872.0]}]}

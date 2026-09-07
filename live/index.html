@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaze Heads, Live</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+:root{
+  --paper:#F2F4F7; --surface:#FFFFFF; --surface-2:#E8ECF1; --ink:#111823; --ink-2:#48546A;
+  --ink-3:#79879E; --line:#D3DAE4; --accent:#0E7C86; --accent-soft:#D6EDEF;
+  --radiologist:#2F9E44; --steered:#1864AB; --warn:#C92A2A;
+  --shadow:0 1px 2px rgba(17,24,35,.06),0 8px 24px rgba(17,24,35,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0C1016;--surface:#141A23;--surface-2:#1D2531;--ink:#E7ECF3;--ink-2:#A3B0C2;
+    --ink-3:#6F7E93;--line:#2A3341;--accent:#3FB6BF;--accent-soft:#12313A;--radiologist:#51CF66;
+    --steered:#4C93E0;--warn:#FF6B6B;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35)}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 56px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h1{font-size:clamp(24px,3.4vw,34px);line-height:1.12;margin:0 0 10px;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.lede{margin:0 0 18px;color:var(--ink-2);max-width:66ch;font-size:15px}
+.lede b{color:var(--ink);font-weight:600}
+.bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);margin-bottom:16px}
+.bar label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);display:flex;flex-direction:column;gap:4px}
+select,input[type=text]{font-family:inherit;font-size:14px;padding:6px 10px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:6px}
+input[type=range]{accent-color:var(--accent)}
+button{font-family:inherit;font-size:14px;font-weight:500;padding:8px 14px;border-radius:7px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.status{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-2);margin-left:auto}
+progress{width:220px;height:8px}
+.stage{display:grid;grid-template-columns:minmax(300px,1fr) minmax(320px,1.05fr);gap:20px;align-items:start}
+@media(max-width:880px){.stage{grid-template-columns:1fr}}
+.viewer{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;box-shadow:var(--shadow)}
+.scan{position:relative;width:100%;aspect-ratio:1;background:#000;border-radius:6px;overflow:hidden;cursor:crosshair;touch-action:none}
+.scan img{width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.scan canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-2)}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:baseline}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);margin-bottom:14px}
+.panel h2{margin:0 0 6px;font-size:12px;font-family:"IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.panel.steered{border-left:3px solid var(--steered)}
+.panel.baseline{border-left:3px solid var(--ink-3)}
+.out{font-family:"IBM Plex Serif",Georgia,serif;font-size:17px;line-height:1.55;min-height:4.6em;margin:0;white-space:pre-wrap}
+.out span{border-radius:3px;padding:0 1px}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);margin-top:8px}
+.note{margin-top:22px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;font-size:13.5px;color:var(--ink-2);max-width:78ch}
+.note h2{font-size:12px;font-family:"IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;font-weight:500}
+.note p{margin:0 0 9px}.note p:last-child{margin:0}.note b{color:var(--ink)}
+.warn{color:var(--warn)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Gaze heads · medical VLMs · runs in your browser</p>
+  <h1>Your cursor becomes the model's gaze</h1>
+  <p class="lede">Qwen3-VL-2B runs <b>entirely in this tab</b> on WebGPU. Move the cursor over the scan
+    and about a hundred of its attention heads are pointed at the spot under it while it writes; move
+    mid-sentence and the sentence follows. Scroll to grow or shrink the spotlight. The model is never
+    told a region in words &mdash; the prompt is identical wherever you point.</p>
+
+  <div class="bar">
+    <button id="start" class="primary">Start demo — downloads ~1.2 GB once</button>
+    <label>Case <select id="case" disabled></select></label>
+    <label>Steering strength <span id="biasV">4</span>
+      <input id="bias" type="range" min="1" max="16" step="1" value="4" disabled></label>
+    <label>Gaze heads <span id="topkV">100</span>
+      <input id="topk" type="range" min="10" max="150" step="10" value="100" disabled></label>
+    <label><input id="snap" type="checkbox" checked> snap to organ when inside a box</label>
+    <button id="baselineBtn" disabled>Generate without steering</button>
+    <span class="status" id="status">needs a WebGPU browser (recent Chrome or Edge on a laptop/desktop)</span>
+  </div>
+  <div class="bar hidden" id="dl"><progress id="prog" max="100" value="0"></progress><span class="status" id="dlLabel"></span></div>
+
+  <div class="stage">
+    <div class="viewer">
+      <div class="scan" id="scan">
+        <img id="img" alt="Medical scan; hover to steer the model's gaze">
+        <canvas id="overlay"></canvas>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--steered)"></i>spotlight (steered tokens)</span>
+        <span><i class="sw" style="background:var(--radiologist)"></i>annotated regions</span>
+        <span id="caseMeta"></span>
+      </div>
+      <label class="meta" style="display:block;margin-top:10px">Prompt
+        <input id="prompt" type="text" style="width:100%;margin-top:4px" value="Describe this image in one or two sentences, as a radiologist would."></label>
+    </div>
+    <div>
+      <div class="panel steered">
+        <h2>While you point</h2>
+        <p class="out" id="out">Start the demo, then hover the scan.</p>
+        <div class="meta" id="outMeta"></div>
+      </div>
+      <div class="panel baseline">
+        <h2>Same prompt, no steering</h2>
+        <p class="out" id="base"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h2>What is and is not happening</h2>
+    <p><b>Nothing is precomputed except the image's vision features.</b> The language model decodes
+      live on your GPU. Steering is one additive bias on the attention scores of the selected heads:
+      +δ on image tokens inside the spotlight, −δ on the rest. No weights change.</p>
+    <p><b>Strength.</b> We measured localisation saturating around 8 and text collapsing into
+      repetition above 16; the value inherited from prior work is 10,000. The slider stops at 16.</p>
+    <p><b>The browser model is slightly weaker than the real one.</b> Qwen3-VL also injects vision
+      features at three early layers (“DeepStack”); the ONNX build has no inputs for them, so they are
+      dropped here. Captions on the cluster are a little better.</p>
+    <p>Scans: <b>SLAKE</b> (Liu et al., 2021), open access. Model weights: an Apache-2.0 ONNX export of
+      Qwen3-VL-2B with steering inputs, published by Gandikota &amp; Bau, whose work on gaze heads in comic
+      strips this study extends to medical imaging. Chest X-ray corpora under a PhysioNet DUA are absent by design.</p>
+  </div>
+</div>
+<script type="module" src="./app.js?v=1"></script>
+</body>
+</html>

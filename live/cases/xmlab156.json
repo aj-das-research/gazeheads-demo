@@ -1,0 +1,1 @@
+{"name": "xmlab156", "modality": "X-Ray", "width": 1024, "height": 1024, "resized": {"width": 1024, "height": 1024}, "grid_thw": [1, 32, 32], "embeds": {"file": "xmlab156.embeds.bin", "dtype": "float32", "dims": [1024, 2048]}, "regions": [{"label": "Atelectasis", "bbox": [179.0, 476.0, 317.0, 547.0]}, {"label": "Effusion", "bbox": [644.0, 187.0, 872.0, 782.0]}]}

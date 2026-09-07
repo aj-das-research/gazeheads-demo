@@ -1,0 +1,1 @@
+{"name": "xmlab334", "modality": "X-Ray", "width": 1024, "height": 1024, "resized": {"width": 1024, "height": 1024}, "grid_thw": [1, 32, 32], "embeds": {"file": "xmlab334.embeds.bin", "dtype": "float32", "dims": [1024, 2048]}, "regions": [{"label": "Effusion", "bbox": [543.0, 584.0, 764.0, 872.0]}, {"label": "Pneumothorax", "bbox": [270.0, 132.0, 358.0, 160.0]}]}
