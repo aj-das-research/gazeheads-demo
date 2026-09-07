@@ -183,6 +183,19 @@ function draw(target) {
 // ----------------------------------------------------------------- model --
 async function loadModel() {
   if (!navigator.gpu) { status('This browser has no WebGPU; use recent Chrome or Edge on a desktop.', true); return false; }
+  // The only published build of this model is q4f16, whose embedding kernel
+  // needs half-precision shaders. Check before the 1.2 GB download, not after:
+  // a GPU without shader-f16 fails at the first token with an ONNX Runtime
+  // error the visitor cannot act on.
+  const adapter = await navigator.gpu.requestAdapter();
+  if (!adapter) { status('WebGPU is present but no GPU adapter was offered; try Chrome with hardware acceleration on.', true); return false; }
+  const gpuName = `${adapter.info?.vendor || ''} ${adapter.info?.architecture || ''}`.trim() || 'unknown GPU';
+  if (!adapter.features.has('shader-f16')) {
+    status(`Your GPU adapter (${gpuName}) does not expose shader-f16, which this model build requires. ` +
+           'Try Chrome/Edge on a laptop or desktop with a recent NVIDIA, AMD, Apple or Intel Arc GPU; software rendering will not work.', true);
+    return false;
+  }
+  status(`GPU: ${gpuName} · shader-f16 OK`);
   $('start').disabled = true;
   $('dl').classList.remove('hidden');
   status('Downloading the model — one time, cached by the browser afterwards');
